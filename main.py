@@ -25,32 +25,35 @@ def autorize(_map,x,y,value) -> bool:
                 return False
     return True
 
-def gen_grid(size_x:int, size_y:int) -> list:
+def gen_grid(size_x=9, size_y=9) -> list:
     _grid_form = [[0 for i in range(size_x)] for j in range(size_y)]
     return _grid_form
 
-def printer():
-    grid = [
-          [1, 5, 2, 0, 0, 0, 3, 0, 6],
-          [7, 3, 9, 2, 0, 6, 0, 4, 1],
-          [4, 6, 8, 3, 0, 0, 2, 9, 5],
-
-          [3, 8, 7, 1, 2, 4, 6, 5, 9],
-          [5, 9, 1, 0, 6, 3, 0, 2, 8],
-          [2, 4, 6, 0, 9, 5, 0, 0, 3],
-          
-          [9, 1, 4, 6, 3, 7, 5, 8, 2],
-          [6, 2, 5, 9, 4, 8, 1, 3, 7],
-          [8, 7, 3, 5, 1, 2, 9, 6, 4]]
+def main():
+    grid = [[1, 5, 2, 4, 8, 9, 3, 7, 6],
+            [7, 3, 9, 2, 5, 6, 8, 4, 1],
+            [4, 6, 8, 3, 7, 1, 2, 9, 5],
+            [3, 8, 7, 1, 2, 4, 6, 5, 9],
+            [5, 9, 1, 7, 6, 3, 4, 2, 8],
+            [2, 4, 6, 8, 9, 5, 7, 1, 3],
+            [9, 1, 4, 6, 3, 7, 5, 8, 2],
+            [6, 2, 5, 9, 4, 8, 1, 3, 7],
+            [8, 7, 3, 5, 1, 2, 9, 6, 4]]
 
     resolved = resolve(grid)
+    for  i in resolved:
+        print(i, end = ",\n")
 
+    # beautiful_print(resolved)
+
+
+def beautiful_print(to_print):
     for i in range(3):
         for j in range(3):
             for n in range(3):
-                print(resolved[j+i*3][n*3:n*3+3], end = " ")
+                print(to_print[j+i*3][n*3:n*3+3], end = " ")
             print()
         print()
 
-
-printer()
+if __name__ == '__main__':
+    main()
