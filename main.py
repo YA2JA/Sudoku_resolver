@@ -5,8 +5,8 @@ from functools import reduce
 from random import choice, randint
 
 def resolve(game_map) -> list:
-    """This fonction is returning 
-    """
+    """This fonction is inputing only numpy array table and returning resolved sudoku table"""
+
     if not np.isin(0, game_map):#verify if table is completed
         return game_map
 
@@ -45,6 +45,8 @@ def right_numbers(grid, x, y) -> list:
     return np.setdiff1d(np.arange(1,10), reduce(np.union1d,(row,col,sqr)))#returning elements wiche are not in any of this 3 lists
 
 def sudok_table_generator(N) -> list:
+    """This function's creating the table and insert N numbers of random elements in random places of the table,
+    random staying respect sudoku rules"""
     table = np.zeros((9,9))#(y,x)
     for i in range(N):#Much N is bigger more chance whiche table be irresolvable
         x,y = randint(0,8),randint(0,8)
@@ -61,17 +63,16 @@ def beautiful_print(to_print):
 
 def main():
     #if you need personalized tests
-    # grid = np.array([[1,5,2,1,8,9,3,7,6]
-    #                  [7,3,9,2,5,6,8,4,1]
-    #                  [4,6,8,3,7,1,2,9,5]
-    #                  [3,8,7,1,2,4,6,5,9]
-    #                  [5,9,1,7,6,3,4,2,8]
-    #                  [2,4,6,8,9,5,7,1,3]
-    #                  [9,1,4,6,3,7,5,8,2]
-    #                  [6,2,5,9,4,8,1,3,7]
-    #                  [8,7,3,5,1,2,9,6,4]])
+    grid = np.array([[1,5,2,1,8,9,3,0,6],
+                     [7,3,9,2,5,6,8,0,1],
+                     [4,6,8,3,7,1,2,0,5],
+                     [3,8,7,1,2,4,6,0,9],
+                     [5,9,1,7,6,3,4,0,8],
+                     [2,4,6,8,9,5,7,0,3],
+                     [9,1,4,6,3,7,5,0,2],
+                     [6,2,5,9,4,8,1,0,7],
+                     [8,7,3,5,1,2,9,0,4]])
 
-    grid  = sudok_table_generator(10)
     resolved = resolve(grid)
     print(resolved)
 
